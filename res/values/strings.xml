@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChangeImage</string>
+    <string name="action_settings">Baby Settings</string>
+    <string name="title_section1">Cuisine</string>
+    <string name="title_section2">Zoo</string>
+    <string name="title_section3">Aquarium</string>
+
+</resources>
