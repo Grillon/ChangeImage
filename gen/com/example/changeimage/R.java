@@ -30,43 +30,98 @@ public final class R {
         public static final int zoo=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f090004;
-        public static final int imageView1=0x7f090003;
-        public static final int pager=0x7f090000;
-        public static final int pager_title_strip=0x7f090001;
-        public static final int section_label=0x7f090002;
+        public static final int action_settings=0x7f090009;
+        public static final int imageView1=0x7f090004;
+        public static final int menu=0x7f090007;
+        public static final int modeQuiz=0x7f090005;
+        public static final int monAccueil=0x7f090000;
+        public static final int page=0x7f090008;
+        public static final int pager=0x7f090001;
+        public static final int pager_title_strip=0x7f090002;
+        public static final int section_label=0x7f090003;
+        public static final int textView1=0x7f090006;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int fragment_main_dummy=0x7f030001;
-        public static final int fragment_main_image=0x7f030002;
+        public static final int accueil=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int fragment_main_dummy=0x7f030002;
+        public static final int fragment_main_image=0x7f030003;
+        public static final int kotoba_main=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;
     }
     public static final class raw {
-        public static final int aqua=0x7f040000;
-        public static final int aspirateur=0x7f040001;
-        public static final int bol=0x7f040002;
-        public static final int cuiseuse=0x7f040003;
-        public static final int cuisine=0x7f040004;
-        public static final int evier=0x7f040005;
-        public static final int herisson=0x7f040006;
-        public static final int louche=0x7f040007;
-        public static final int marmitte=0x7f040008;
-        public static final int micro_onde=0x7f040009;
-        public static final int pelican=0x7f04000a;
-        public static final int pieuvre=0x7f04000b;
-        public static final int refregirateur=0x7f04000c;
-        public static final int rhinoceros=0x7f04000d;
-        public static final int spatule=0x7f04000e;
-        public static final int the=0x7f04000f;
-        public static final int theiere=0x7f040010;
-        public static final int zoo=0x7f040011;
+        public static final int algue=0x7f040000;
+        public static final int aqua=0x7f040001;
+        public static final int aspirateur=0x7f040002;
+        public static final int bol=0x7f040003;
+        public static final int cuiseuse=0x7f040004;
+        public static final int cuisine=0x7f040005;
+        public static final int dauphin=0x7f040006;
+        public static final int etoiledemer=0x7f040007;
+        public static final int evier=0x7f040008;
+        public static final int herisson=0x7f040009;
+        public static final int hippocampe=0x7f04000a;
+        public static final int limande=0x7f04000b;
+        public static final int louche=0x7f04000c;
+        public static final int loutremarine=0x7f04000d;
+        public static final int marmitte=0x7f04000e;
+        public static final int menu=0x7f04000f;
+        public static final int micro_onde=0x7f040010;
+        public static final int orque=0x7f040011;
+        public static final int oursin=0x7f040012;
+        public static final int pelican=0x7f040013;
+        public static final int pieuvre=0x7f040014;
+        public static final int poissonglobe=0x7f040015;
+        public static final int poissonlune=0x7f040016;
+        public static final int refregirateur=0x7f040017;
+        public static final int rhinoceros=0x7f040018;
+        public static final int sole=0x7f040019;
+        public static final int spatule=0x7f04001a;
+        public static final int the=0x7f04001b;
+        public static final int theiere=0x7f04001c;
+        public static final int zoo=0x7f04001d;
     }
     public static final class string {
+        public static final int Dromadaire=0x7f060009;
+        public static final int Hibou=0x7f060008;
         public static final int action_settings=0x7f060001;
+        public static final int algues=0x7f060024;
         public static final int app_name=0x7f060000;
+        public static final int aspirateur=0x7f060014;
+        public static final int bols=0x7f060019;
+        public static final int crocodile=0x7f06000d;
+        public static final int cuiseuse=0x7f060015;
+        public static final int dauphin=0x7f06001b;
+        public static final int etoileDeMer=0x7f060020;
+        public static final int evier=0x7f060010;
+        public static final int flamand=0x7f06000a;
+        public static final int herisson=0x7f06000b;
+        public static final int hippocampe=0x7f06001f;
+        public static final int hippopotame=0x7f06000e;
+        public static final int limande=0x7f060021;
+        public static final int louche=0x7f060011;
+        public static final int loutreMarine=0x7f060025;
+        public static final int marmitte=0x7f06000f;
+        public static final int microOnde=0x7f060012;
+        public static final int orque=0x7f06001c;
+        public static final int oursin=0x7f060023;
+        public static final int pelican=0x7f060005;
+        public static final int peroquet=0x7f060007;
+        public static final int pieuvre=0x7f06001a;
+        public static final int poissonGlobe=0x7f06001e;
+        public static final int poissonLune=0x7f06001d;
+        /**  Question 
+         */
+        public static final int question=0x7f060026;
+        public static final int raton=0x7f06000c;
+        public static final int refregirateur=0x7f060013;
+        public static final int rhinoceros=0x7f060006;
+        public static final int sole=0x7f060022;
+        public static final int spatule=0x7f060016;
+        public static final int the=0x7f060017;
+        public static final int theiere=0x7f060018;
         public static final int title_section1=0x7f060002;
         public static final int title_section2=0x7f060003;
         public static final int title_section3=0x7f060004;

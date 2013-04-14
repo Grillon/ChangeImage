@@ -4,10 +4,10 @@ class ObjetMaison {
 	 float x, y, largeur, hauteur;
 	 static final float totalHeight = 1177;
 	 static final float totalWidth = 800;
-	 String monMessage;
+	 int monMessage;
 	 int monSon;
 
-	ObjetMaison(float debutX, float finX, float debutY, float finY, String monMessageTmp, int monSonTmp) {
+	ObjetMaison(float debutX, float finX, float debutY, float finY, int monMessageTmp, int monSonTmp) {
 	  /*debutX/=totalWidth;
 	  finX/=totalWidth;
 	  debutY/=totalHeight;
@@ -23,7 +23,7 @@ class ObjetMaison {
 	 // println("x,y,hx,hy:"+x+","+y+","+largeur+","+hauteur);
 	}
 
-	public String getMessage() {
+	public int getMessage() {
 	 return monMessage; 
 	}
 

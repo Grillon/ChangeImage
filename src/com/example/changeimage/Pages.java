@@ -48,7 +48,7 @@ public class Pages {
 			if (objetCourant.touche(x, y)) {
 				Bundle info = new Bundle();
 				info.putBoolean("touche", true);
-				info.putString("nom", objetCourant.getMessage());
+				//info.putString("nom", objetCourant.getMessage());
 				info.putInt("idSon", objetCourant.getSon());
 				return info;
 			}

@@ -2,18 +2,19 @@ package com.example.changeimage;
 
 import java.util.ArrayList;
 import java.util.Locale;
-
-
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.media.SoundPool.OnLoadCompleteListener;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.*;
 import android.util.DisplayMetrics;
@@ -25,9 +26,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ImageView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity  implements TextToSpeech.OnInitListener {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -44,6 +47,7 @@ public class MainActivity extends FragmentActivity {
 	 */
 	ViewPager mViewPager;
 	
+	public static TextToSpeech tts;
 	private static SoundPool soundPool;
 	static boolean loaded = false;
 	static ArrayList<Pages> pages = new ArrayList<Pages>();
@@ -76,6 +80,7 @@ public class MainActivity extends FragmentActivity {
 		      }
 		    });
 		//Definition Pages
+		/*
 		pages.add(new Pages("Cuisine",R.drawable.cuisine));
 		pages.add(new Pages("Zoo",R.drawable.zoo));
 		pages.add(new Pages("Aquarium",R.drawable.aqua));
@@ -83,9 +88,9 @@ public class MainActivity extends FragmentActivity {
 		pages.get(0).setSon(soundPool.load(this, R.raw.cuisine, 1));
 		pages.get(1).setSon(soundPool.load(this, R.raw.zoo, 1));
 		pages.get(2).setSon(soundPool.load(this, R.raw.aqua, 1));
-	    
+	    */
 		//Definition des objetsMaison
-		
+		/*
 		pages.get(0).addObjetMaison(new ObjetMaison((float)0.73875,(float)1,(float)0.09855565,(float)0.24808836,"Micro Onde",soundPool.load(this, R.raw.micro_onde, 1)));
 		pages.get(0).addObjetMaison(new ObjetMaison((float)0.72125,(float)1,(float)0.25233644,(float)0.61172473,"Refregirateur",soundPool.load(this, R.raw.refregirateur, 1)));
 		pages.get(0).addObjetMaison(new ObjetMaison((float)0.41,(float)0.715,(float)0.27527612,(float)0.3789295,"Evier",soundPool.load(this, R.raw.evier, 1)));
@@ -103,6 +108,8 @@ public class MainActivity extends FragmentActivity {
 		pages.get(1).addObjetMaison(new ObjetMaison((float)0.01125,(float)0.32875,(float)0.021240441,(float)0.23874256,"Pelican",soundPool.load(this, R.raw.pelican, 1)));
 		
 		pages.get(2).addObjetMaison(new ObjetMaison((float)0.56875,(float)0.73375,(float)0.34239593,(float)0.5369584,"Pieuvre",soundPool.load(this, R.raw.pieuvre, 1)));
+		*/
+		tts = new TextToSpeech(this, this);
 	}
 	
 	@Override
@@ -110,6 +117,10 @@ public class MainActivity extends FragmentActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+	@Override
+	public void onBackPressed() {
+		Log.d("CDA", "onBackPressed Called");
 	}
 
 	/**
@@ -127,13 +138,31 @@ public class MainActivity extends FragmentActivity {
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
+			/*
 			Fragment fragment = new DummySectionFragment();
 			Bundle args = new Bundle();
 			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
 			args.putInt("position", position);
 			//Log.i("position :",Integer.toString(position));
 			fragment.setArguments(args);
-			return fragment;
+			*/
+			Bundle args = new Bundle();
+			args.putInt("position", position);
+			switch (position) {
+			case 0:
+				Fragment cuisine = new Cuisine();
+				cuisine.setArguments(args);
+				return cuisine;
+			case 1:
+				Fragment zoo = new Zoo();
+				zoo.setArguments(args);
+				return zoo;
+			case 2:
+			Fragment aquarium = new Aquarium();
+			aquarium.setArguments(args);
+				return aquarium;
+			}
+			return null;
 		}
 
 		@Override
@@ -189,16 +218,6 @@ public class MainActivity extends FragmentActivity {
 			ImageView monImage = (ImageView)rootView.findViewById(R.id.imageView1);
 			monImage.setImageResource(pages.get(choix).getImage());
 			pages.get(choix).setVue(monImage);
-			
-			getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-			float xx = metrics.heightPixels;
-			float yy = metrics.widthPixels;
-			float xdpi = metrics.xdpi;
-			float ydpi = metrics.ydpi;
-			Log.i("xx : ",Float.toString(xx));
-			Log.i("yy : ",Float.toString(yy));
-			Log.i("xdpi : ",Float.toString(xdpi));
-			Log.i("ydpi : ",Float.toString(ydpi));
 			monImage.setOnTouchListener(new View.OnTouchListener(){
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
@@ -229,6 +248,46 @@ public class MainActivity extends FragmentActivity {
 				
 			}
 		}
+		
 	}
-
+	@Override
+	public void onInit(int status) {
+		if (status == TextToSpeech.SUCCESS) {
+			 
+            int result = tts.setLanguage(Locale.FRANCE);
+ 
+            if (result == TextToSpeech.LANG_MISSING_DATA
+                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "This Language is not supported");
+            } else {
+                //speakOut();
+            }
+ 
+        } else {
+            Log.e("TTS", "Initilization Failed!");
+        }
+ 
+		
+	}
+	
+	@Override
+    public void onDestroy() {
+        // Don't forget to shutdown tts!
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onDestroy();
+    }	
+/*	
+	public void ToggleQuizz(View view) {
+		ToggleButton btn = (ToggleButton) view;
+		if (btn.isChecked()) {
+			Toast.makeText(this, Integer.toString(mViewPager.getCurrentItem()), Toast.LENGTH_SHORT).show();
+		}
+			
+			
+		else Toast.makeText(this, "mode Quizz OFF", Toast.LENGTH_SHORT).show();
+	}
+*/
 }
