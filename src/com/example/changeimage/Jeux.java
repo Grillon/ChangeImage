@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import java.util.Locale;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.TextToSpeech.OnInitListener;
@@ -28,15 +29,12 @@ public abstract class Jeux extends Fragment {
 	int imageFond;
 	protected ArrayList<ObjetMaison> objetsMaison = new ArrayList<ObjetMaison>();
 	protected String nomLieu;
-	private int numeroPage;
-	public static int nombreDePages = 0;
 	public boolean modeQuiz;
-	public static String objetQuiz;
+	public String objetQuiz;
 	public View maVue;
 	
 	
 	public Jeux() {
-		nombreDePages++;
 		modeQuiz=false;
 	}
 	
@@ -48,9 +46,6 @@ public abstract class Jeux extends Fragment {
 				container, false);
 		ImageView monImage = (ImageView)rootView.findViewById(R.id.imageView1);
 		monImage.setImageResource(imageFond);
-		numeroPage = getArguments().getInt("position");
-		Log.i("Numero de page : ",Integer.toString(numeroPage));
-		Log.i("Nombre de pages : ",Integer.toString(nombreDePages));
 		setVue(rootView);
 		rootView.setOnTouchListener(new View.OnTouchListener(){
 			@Override
@@ -68,18 +63,9 @@ public abstract class Jeux extends Fragment {
 						TextView txt = (TextView)v.findViewById(R.id.textView1);
 						//if (loaded) soundPool.play(info.getInt("idSon"), 1, 1, 1, 0, 1f);
 						if (modeQuiz()) {
-							if (compare(info.getString("nom"))) {
-								txt.setText("Bravo, tu as trouvé "+info.getString("nom"));
-								MainActivity.tts.speak("Bravo, tu as trouvé "+info.getString("nom"), TextToSpeech.QUEUE_FLUSH, null);
-								selectWord();
-								txt.setText("Trouves "+getWord());
-							}
-							else {
-								MainActivity.tts.speak("Désolé, c'est "+info.getString("nom")+"!", TextToSpeech.QUEUE_FLUSH, null);
-							}
+							compare(info.getString("nom"));
 						}
 						else {
-							Log.i("tu as touché : ",info.getString("nom"));
 							MainActivity.tts.speak(info.getString("nom"), TextToSpeech.QUEUE_FLUSH, null);
 							txt.setText(info.getString("nom"));
 						}
@@ -101,9 +87,7 @@ public abstract class Jeux extends Fragment {
 				if (btn.isChecked()) {
 					
 					Toast.makeText(getActivity().getBaseContext(), "mode Quizz", Toast.LENGTH_SHORT).show();
-					txt.setText("mode quizz");
 					quizOn();
-					txt.setText("Trouves le "+getWord());
 					
 					
 				}
@@ -120,9 +104,13 @@ public abstract class Jeux extends Fragment {
 	public void setUserVisibleHint(boolean etat) {
 		//int position = getArguments().getInt("position");
 		if (etat) {
-			//if (loaded) soundPool.play(pages.get(position).getSon(), 1, 1, 1, 0, 1f);
-			
+			MainActivity.tts.speak(nomLieu, TextToSpeech.QUEUE_FLUSH, null);
 		}
+	}
+	@Override
+	public void onResume() {
+		super.onResume();
+		quizOff();
 	}
 	private Bundle touche(float x,float y) {
 		int nbrElements = objetsMaison.size();
@@ -143,54 +131,6 @@ public abstract class Jeux extends Fragment {
 		info.putInt("idSon",-1);
 		return info;
 	}
-/*
-private Bundle touche(float x,float y) {
-	int nbrElements = objetsMaison.size();
-	for (int curseur=0;curseur<nbrElements;curseur++) {
-		ObjetMaison objetCourant = objetsMaison.get(curseur);
-		if (objetCourant.touche(x, y)) {
-			Bundle info = new Bundle();
-			info.putBoolean("touche", true);
-			info.putString("nom", objetCourant.getMessage());
-			info.putInt("idSon", -1);
-			return info;
-		}
-		
-	}
-	Bundle info = new Bundle();
-	info.putBoolean("touche", false);
-	info.putString("nom", "aucun");
-	info.putInt("idSon",-1);
-	return info;
-}
-*/
-public int getNumeroPage() {
-	return numeroPage;
-}
-/*
-@Override
-public void onResume() {
-	super.onResume();
-	
-	ToggleButton btn = (ToggleButton)getActivity().findViewById(R.id.modeQuiz);
-	btn.setOnClickListener(btnListener);
-
-	
-}
-
-private OnClickListener btnListener = new OnClickListener(){
-	public void onClick(View view) {
-		ToggleButton btn = (ToggleButton) view;
-		TextView txt = (TextView)view.findViewById(R.id.textView1);
-		if (btn.isChecked()) {
-			
-			txt.setText("mode quizz");
-			Log.i("Texte a change : ","coucou");
-		}
-		else txt.setText("fin quizz");
-	}
-};
-*/
 
 public void setVue(View view) {
 	maVue = view;
@@ -207,10 +147,18 @@ public void quizOn() {
 }
 
 public void quizOff() {
+	ToggleButton btn = (ToggleButton)getActivity().findViewById(R.id.modeQuiz);
+	TextView txt = (TextView)getActivity().findViewById(R.id.textView1);
+	txt.setText(" ");
+	btn.setChecked(false);
 	modeQuiz = false;
+	Log.i("mode quiz :",Boolean.toString(modeQuiz));
 }
 
 public boolean modeQuiz() {
+	View v = getVue();
+	ToggleButton btn = (ToggleButton)v.findViewById(R.id.modeQuiz);
+	modeQuiz = btn.isChecked();
 	return modeQuiz;
 }
 
@@ -219,15 +167,62 @@ public String selectWord() {
 	int min = 0;
 	int choix = (int)(Math.random()*(max - min)+min);
 	objetQuiz = getString(objetsMaison.get(choix).getMessage());
+	questionQuiz();
 	return objetQuiz;
 }
 
+private void questionQuiz() {
+	View v = getVue();
+	TextView txt = (TextView)v.findViewById(R.id.textView1);
+	txt.setText("Trouves "+objetQuiz);
+	
+	MainActivity.tts.speak("Trouves "+objetQuiz, TextToSpeech.QUEUE_ADD, null);
+	
+}
+
 public boolean compare(String reponse) {
+	if (objetQuiz.equalsIgnoreCase(reponse)) {
+		bonneReponse(reponse);
+		
+		selectWord();
+	}
+	else {
+		mauvaiseReponse(reponse);
+		questionQuiz();
+	}
 	return objetQuiz.equalsIgnoreCase(reponse);
 }
 
 public String getWord() {
 	return objetQuiz;
+}
+
+private void bonneReponse(String reponse) {
+	String message = "Bravo, tu as trouvé "+reponse;
+	int couleur = Color.GREEN;
+	Toast toast = Toast.makeText(getActivity().getBaseContext(), message, Toast.LENGTH_SHORT);
+	
+	
+	TextView felicitation = (TextView) toast.getView().findViewById(android.R.id.message);
+	felicitation.setTextColor(couleur);
+	toast.show();
+
+	MainActivity.tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
+	
+	
+	
+	
+}
+
+private void mauvaiseReponse(String reponse) {
+	String message = "Désolé, c'est "+reponse;
+	int couleur = Color.RED;
+	Toast toast = Toast.makeText(getActivity().getBaseContext(), message, Toast.LENGTH_SHORT);
+	
+	TextView felicitation = (TextView) toast.getView().findViewById(android.R.id.message);
+	felicitation.setTextColor(couleur);
+	toast.show();
+	MainActivity.tts.speak(message, TextToSpeech.QUEUE_FLUSH, null);
 }
 
 }

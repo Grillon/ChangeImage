@@ -84,47 +84,48 @@ public final class R {
         public static final int zoo=0x7f04001d;
     }
     public static final class string {
-        public static final int Dromadaire=0x7f060009;
-        public static final int Hibou=0x7f060008;
+        public static final int Dromadaire=0x7f06000a;
+        public static final int Hibou=0x7f060009;
         public static final int action_settings=0x7f060001;
-        public static final int algues=0x7f060024;
+        public static final int algues=0x7f060025;
         public static final int app_name=0x7f060000;
-        public static final int aspirateur=0x7f060014;
-        public static final int bols=0x7f060019;
-        public static final int crocodile=0x7f06000d;
-        public static final int cuiseuse=0x7f060015;
-        public static final int dauphin=0x7f06001b;
-        public static final int etoileDeMer=0x7f060020;
-        public static final int evier=0x7f060010;
-        public static final int flamand=0x7f06000a;
-        public static final int herisson=0x7f06000b;
-        public static final int hippocampe=0x7f06001f;
-        public static final int hippopotame=0x7f06000e;
-        public static final int limande=0x7f060021;
-        public static final int louche=0x7f060011;
-        public static final int loutreMarine=0x7f060025;
-        public static final int marmitte=0x7f06000f;
-        public static final int microOnde=0x7f060012;
-        public static final int orque=0x7f06001c;
-        public static final int oursin=0x7f060023;
-        public static final int pelican=0x7f060005;
-        public static final int peroquet=0x7f060007;
-        public static final int pieuvre=0x7f06001a;
-        public static final int poissonGlobe=0x7f06001e;
-        public static final int poissonLune=0x7f06001d;
+        public static final int aspirateur=0x7f060015;
+        public static final int bols=0x7f06001a;
+        public static final int crocodile=0x7f06000e;
+        public static final int cuiseuse=0x7f060016;
+        public static final int dauphin=0x7f06001c;
+        public static final int etoileDeMer=0x7f060021;
+        public static final int evier=0x7f060011;
+        public static final int flamand=0x7f06000b;
+        public static final int herisson=0x7f06000c;
+        public static final int hippocampe=0x7f060020;
+        public static final int hippopotame=0x7f06000f;
+        public static final int limande=0x7f060022;
+        public static final int louche=0x7f060012;
+        public static final int loutreMarine=0x7f060026;
+        public static final int marmitte=0x7f060010;
+        public static final int microOnde=0x7f060013;
+        public static final int orque=0x7f06001d;
+        public static final int oursin=0x7f060024;
+        public static final int pelican=0x7f060006;
+        public static final int peroquet=0x7f060008;
+        public static final int pieuvre=0x7f06001b;
+        public static final int poissonGlobe=0x7f06001f;
+        public static final int poissonLune=0x7f06001e;
         /**  Question 
          */
-        public static final int question=0x7f060026;
-        public static final int raton=0x7f06000c;
-        public static final int refregirateur=0x7f060013;
-        public static final int rhinoceros=0x7f060006;
-        public static final int sole=0x7f060022;
-        public static final int spatule=0x7f060016;
-        public static final int the=0x7f060017;
-        public static final int theiere=0x7f060018;
-        public static final int title_section1=0x7f060002;
-        public static final int title_section2=0x7f060003;
-        public static final int title_section3=0x7f060004;
+        public static final int question=0x7f060027;
+        public static final int raton=0x7f06000d;
+        public static final int refregirateur=0x7f060014;
+        public static final int rhinoceros=0x7f060007;
+        public static final int sole=0x7f060023;
+        public static final int spatule=0x7f060017;
+        public static final int the=0x7f060018;
+        public static final int theiere=0x7f060019;
+        public static final int title_section0=0x7f060002;
+        public static final int title_section1=0x7f060003;
+        public static final int title_section2=0x7f060004;
+        public static final int title_section3=0x7f060005;
     }
     public static final class style {
         /** 

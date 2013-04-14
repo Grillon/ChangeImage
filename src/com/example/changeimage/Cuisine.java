@@ -51,8 +51,4 @@ public Cuisine() {
 	//getString(R.string.aspirateur);
 }
 
-public void quizzOn() {
-	modeQuiz = true;
-}
-
 }

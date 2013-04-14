@@ -3,6 +3,7 @@
 
     <string name="app_name">ChangeImage</string>
     <string name="action_settings">Baby Settings</string>
+    <string name="title_section0">Menu</string>
     <string name="title_section1">Cuisine</string>
     <string name="title_section2">Zoo</string>
     <string name="title_section3">Aquarium</string>
