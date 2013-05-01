@@ -3,6 +3,8 @@ package com.example.changeimage;
 import java.util.ArrayList;
 import java.util.Locale;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
@@ -21,6 +23,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,20 +51,17 @@ public class MainActivity extends FragmentActivity  implements TextToSpeech.OnIn
 	static ViewPager mViewPager;
 	
 	public static TextToSpeech tts;
-	private static SoundPool soundPool;
-	static boolean loaded = false;
-	static ArrayList<Pages> pages = new ArrayList<Pages>();
-	static final float totalHeight = 1177;
-	static final float totalWidth = 800;
-	// ImageView iv=null;
-	Context monContext=null;
+	public Locale langue1 = Locale.FRANCE;
+	public Locale langue2 = Locale.JAPAN;
+	public Locale langue = langue1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+		int position = getIntent().getIntExtra("position",0); 
+		
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -72,14 +72,11 @@ public class MainActivity extends FragmentActivity  implements TextToSpeech.OnIn
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 		
-		soundPool.setOnLoadCompleteListener(new OnLoadCompleteListener() {
-		      @Override
-		      public void onLoadComplete(SoundPool soundPool, int sampleId,
-		          int status) {
-		        loaded = true;
-		      }
-		    });
+		
+
 				tts = new TextToSpeech(this, this);
+				
+				mViewPager.setCurrentItem(position);
 	}
 	
 	@Override
@@ -89,16 +86,41 @@ public class MainActivity extends FragmentActivity  implements TextToSpeech.OnIn
 		return true;
 	}
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+		String maLangue="fr_FR";
+		
+		switch (item.getItemId()) {
+		case R.id.japonais:
+			maLangue="ja_JP";
+			langue=Locale.JAPAN;
+			break;
+		case R.id.francais:
+			maLangue="fr_FR";
+			langue=Locale.FRANCE;
+			break;
+		}
+		Locale locale = new Locale(maLangue);
+		Locale.setDefault(locale);
+		Configuration config = new Configuration();
+		config.locale = locale;
+		getApplicationContext().getResources().updateConfiguration(config, null);
+		tts.setLanguage(langue);
+		Log.i("Locale",getResources().getConfiguration().locale.getDisplayName());
+		
+		return true;
+	    }
+	@Override
 	public void onBackPressed() {
-		Log.d("CDA", "onBackPressed Called");
-		mViewPager.setCurrentItem(0);
+		super.onBackPressed();
+		//Log.d("CDA", "onBackPressed Called");
 	}
 
 	/**
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
-	public class SectionsPagerAdapter extends FragmentPagerAdapter {
+	public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -109,15 +131,12 @@ public class MainActivity extends FragmentActivity  implements TextToSpeech.OnIn
 			
 			switch (position) {
 			case 0:
-				Fragment monMenu = new MonMenu();
-				return monMenu;
-			case 1:
 				Fragment cuisine = new Cuisine();
 				return cuisine;
-			case 2:
+			case 1:
 				Fragment zoo = new Zoo();
 				return zoo;
-			case 3:
+			case 2:
 			Fragment aquarium = new Aquarium();
 				return aquarium;
 			}
@@ -127,7 +146,7 @@ public class MainActivity extends FragmentActivity  implements TextToSpeech.OnIn
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 4;
+			return 3;
 		}
 
 		@Override
@@ -135,36 +154,30 @@ public class MainActivity extends FragmentActivity  implements TextToSpeech.OnIn
 			Locale l = Locale.getDefault();
 			switch (position) {
 			case 0:
-				return getString(R.string.title_section0).toUpperCase(l);
-			case 1:
 				return getString(R.string.title_section1).toUpperCase(l);
-			case 2:
+			case 1:
 				return getString(R.string.title_section2).toUpperCase(l);
-			case 3:
+			case 2:
 				return getString(R.string.title_section3).toUpperCase(l);
 			}
 			return null;
 		}
 	}
-	
-	
-
-
 	@Override
 	public void onInit(int status) {
 		if (status == TextToSpeech.SUCCESS) {
 			 
-            int result = tts.setLanguage(Locale.FRANCE);
+            int result = tts.setLanguage(langue);
  
             if (result == TextToSpeech.LANG_MISSING_DATA
                     || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "This Language is not supported");
+               // Log.e("TTS", "This Language is not supported");
             } else {
                 //speakOut();
             }
  
         } else {
-            Log.e("TTS", "Initilization Failed!");
+            //Log.e("TTS", "Initilization Failed!");
         }
  
 		

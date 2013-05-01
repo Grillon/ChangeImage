@@ -54,11 +54,11 @@ public abstract class Jeux extends Fragment {
 				if (action == MotionEvent.ACTION_UP) {
 					final float x = event.getX()/v.getMeasuredWidth();
 					final float y = event.getY()/v.getMeasuredHeight();
-					Log.i("mon Image bottom : ",Float.toString(v.getMeasuredHeight()));
+					//Log.i("mon Image bottom : ",Float.toString(v.getMeasuredHeight()));
 					Log.i("X : ",Float.toString(x));
 					Log.i("Y : ",Float.toString(y));
 					Bundle info = touche(x, y);
-					Log.i("nom : ",info.getString("nom"));
+					//Log.i("nom : ",info.getString("nom"));
 					if (info.getBoolean("touche")) {
 						TextView txt = (TextView)v.findViewById(R.id.textView1);
 						//if (loaded) soundPool.play(info.getInt("idSon"), 1, 1, 1, 0, 1f);
@@ -86,13 +86,13 @@ public abstract class Jeux extends Fragment {
 				ToggleButton btn = (ToggleButton)v.findViewById(R.id.modeQuiz);
 				if (btn.isChecked()) {
 					
-					Toast.makeText(getActivity().getBaseContext(), "mode Quizz", Toast.LENGTH_SHORT).show();
+					MainActivity.tts.speak("Quizz activé.", TextToSpeech.QUEUE_FLUSH, null);
 					quizOn();
 					
 					
 				}
 				else {
-					Toast.makeText(getActivity().getBaseContext(), "mode Quizz", Toast.LENGTH_SHORT).show();
+					MainActivity.tts.speak("Fin du Quizz.", TextToSpeech.QUEUE_FLUSH, null);
 					quizOff();
 				}
 				
@@ -152,7 +152,7 @@ public void quizOff() {
 	txt.setText(" ");
 	btn.setChecked(false);
 	modeQuiz = false;
-	Log.i("mode quiz :",Boolean.toString(modeQuiz));
+	//Log.i("mode quiz :",Boolean.toString(modeQuiz));
 }
 
 public boolean modeQuiz() {

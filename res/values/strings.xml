@@ -2,7 +2,8 @@
 <resources>
 
     <string name="app_name">ChangeImage</string>
-    <string name="action_settings">Baby Settings</string>
+    <string name="francais">Français</string>
+    <string name="japonais">日本語</string>
     <string name="title_section0">Menu</string>
     <string name="title_section1">Cuisine</string>
     <string name="title_section2">Zoo</string>
@@ -13,8 +14,9 @@
 	<string name="rhinoceros">Le Rhinocéros</string>
 	<string name="peroquet">Le Péroquet</string>
 	<string name="Hibou">Le hibou</string>
-	<string name="Dromadaire">Le dromadaire</string>
-	<string name="flamand">Le flamand rose</string>
+	<string name="dromadaire">Le dromadaire</string>
+	<string name="tapir">Le tapir</string>
+	<string name="flamant">Le flamand rose</string>
 	<string name="herisson">Le hérisson</string>
 	<string name="raton">Le raton laveur</string>
 	<string name="crocodile">Le crocodile</string>
@@ -31,6 +33,10 @@
 	<string name="the">Le thé</string>
 	<string name="theiere">La théière</string>
 	<string name="bols">Les bols</string>
+	<string name="bouilloire">La Bouilloire</string>
+	<string name="assiettes">Les assiettes</string>
+	<string name="tasses">Les tasses</string>
+	<string name="pelle">Une pelle à frire</string>
 	
 	<string name="pieuvre">La pieuvre</string>
 	<string name="dauphin">Le dauphin</string>

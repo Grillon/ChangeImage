@@ -46,6 +46,11 @@ public Cuisine() {
 	objetsMaison.add(new ObjetMaison((float)0.12875,(float)0.255,(float)0.7247239,(float)0.82752764,R.string.bols,-1));
 	objetsMaison.add(new ObjetMaison((float)0.2975,(float)0.74,(float)0.5386576,(float)0.7604078,R.string.aspirateur,-1));
 	objetsMaison.add(new ObjetMaison((float)0.035,(float)0.215,(float)0.49617672,(float)0.6992353,R.string.cuiseuse,-1));
+	
+	objetsMaison.add(new ObjetMaison((float)0.48541668,(float)0.52916664,(float)0.11523179,(float)0.22384106,R.string.pelle,-1));
+	objetsMaison.add(new ObjetMaison((float)0.0020833334,(float)0.125,(float)0.20794702,(float)0.30728477,R.string.bouilloire,-1));
+	objetsMaison.add(new ObjetMaison((float)0.010416667,(float)0.24166666,(float)0.08874172,(float)0.14966887,R.string.assiettes,-1));
+	objetsMaison.add(new ObjetMaison((float)0.26041666,(float)0.36875,(float)0.105960265,(float)0.14834437,R.string.tasses,-1));
 	imageFond = R.drawable.cuisine;
 	nomLieu = "Cuisine";
 	//getString(R.string.aspirateur);

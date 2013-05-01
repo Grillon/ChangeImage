@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="ToggleButton" />
+        android:text="ToggleButton"
+        android:textOff="Quiz"
+        android:textOn="Quiz" />
 
     <TextView
         android:id="@+id/textView1"

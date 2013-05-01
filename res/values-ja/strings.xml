@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pelican">ペリカン</string>
+	<string name="rhinoceros">さい</string>
+	<string name="peroquet">おお</string>
+	<string name="Hibou">Le hibou</string>
+	<string name="Dromadaire">Le dromadaire</string>
+	<string name="flamand">Le flamand rose</string>
+	<string name="herisson">はりねずみ</string>
+	<string name="raton">Le raton laveur</string>
+	<string name="crocodile">Le crocodile</string>
+	<string name="hippopotame">L\'hippopotame</string>
+	
+	<string name="pieuvre">たこ</string>
+	<string name="dauphin">いるか</string>
+	<string name="orque">しゃち</string>
+	<string name="poissonLune">まんぼう</string>
+	<string name="poissonGlobe">ふぐ</string>
+	<string name="hippocampe">たつのおとしご</string>
+	<string name="etoileDeMer">ひとで</string>
+	<string name="limande">かれい</string>
+	<string name="sole">ひらめ</string>
+	<string name="oursin">うに</string>
+	<string name="algues">かいそう</string>
+	<string name="loutreMarine">ラッコ</string>
+	
+	<string name="marmitte">なべ</string>
+	<string name="evier">ながし</string>
+	<string name="louche">おたま</string>
+	<string name="microOnde">でんしレンジ</string>
+	<string name="refregirateur">れいぞうこ</string>
+	<string name="aspirateur">そうじき</string>
+	<string name="cuiseuse">すいはんき</string>
+	<string name="spatule">しゃもじ</string>
+	<string name="the">おちゃ</string>
+	<string name="theiere">きゅうす</string>
+	<string name="bols">おちゃわん</string>
+</resources>
